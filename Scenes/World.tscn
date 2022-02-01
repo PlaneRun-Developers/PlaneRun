@@ -90,8 +90,6 @@ __meta__ = {
 [node name="Sprite" parent="." instance=ExtResource( 1 )]
 region_rect = Rect2( 0, 0, 1024.32, 581.506 )
 
-[node name="PauseMenu" type="CanvasLayer" parent="."]
-
 [connection signal="died" from="Player" to="." method="_on_Player_died"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
 [connection signal="finished" from="ExplosionSound" to="." method="_on_ExplosionSound_finished"]
