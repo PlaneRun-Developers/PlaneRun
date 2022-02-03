@@ -8,7 +8,7 @@
 [ext_resource path="res://Assets/ship_0005.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
-size = 26
+size = 50
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
@@ -23,7 +23,7 @@ __meta__ = {
 
 [node name="ShipBlue" type="Sprite" parent="."]
 position = Vector2( 512, 88 )
-scale = Vector2( 2, 2 )
+scale = Vector2( 3, 3 )
 z_index = 2
 texture = ExtResource( 3 )
 

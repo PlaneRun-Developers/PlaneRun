@@ -88,7 +88,8 @@ __meta__ = {
 }
 
 [node name="Sprite" parent="." instance=ExtResource( 1 )]
-region_rect = Rect2( 0, 0, 1024.32, 581.506 )
+scale = Vector2( 1.8, 1.8 )
+region_rect = Rect2( 0, 0, 569.502, 321.382 )
 
 [connection signal="died" from="Player" to="." method="_on_Player_died"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
