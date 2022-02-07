@@ -24,6 +24,6 @@ func _on_ExplosionSound_finished():
 	get_tree().change_scene("res://Scenes/Menu.tscn")
 	
 func _process(delta):
-	$ParallaxBackground/ParallaxLayer/Sprite.position.y += 1
-	if $ParallaxBackground/ParallaxLayer/Sprite.position.y == 0:
+	if $ParallaxBackground/ParallaxLayer/Sprite.position.y >= 0:
 		$ParallaxBackground/ParallaxLayer/Sprite.position.y = -576
+	$ParallaxBackground/ParallaxLayer/Sprite.position.y += 250 * delta
