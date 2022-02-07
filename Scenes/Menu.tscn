@@ -27,10 +27,6 @@ scale = Vector2( 3, 3 )
 z_index = 2
 texture = ExtResource( 3 )
 
-[node name="Sprite" parent="." instance=ExtResource( 1 )]
-scale = Vector2( 2.22609, 1.8 )
-region_rect = Rect2( 0, 0, 460.753, 320 )
-
 [node name="Title" type="Label" parent="."]
 anchor_right = 1.0
 margin_top = 144.0
@@ -105,6 +101,11 @@ text = "Quit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Sprite" parent="." instance=ExtResource( 1 )]
+scale = Vector2( 2.22609, 1.8 )
+z_index = -5
+region_rect = Rect2( 0, 0, 460.753, 320 )
 
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
