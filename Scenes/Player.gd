@@ -13,8 +13,8 @@ func _process(delta):
 	var half_width = $Sprite.texture.get_width() / 2
 	var half_height = $Sprite.texture.get_height() / 2
 	
-	position.x = clamp(new_position, half_width, 1280 - half_width)
-	position.y = clamp(up_down, half_height, 720 - half_height)
+	position.x = clamp(new_position, half_width, 1024 - half_width)
+	position.y = clamp(up_down, half_height, 576 - half_height)
 
 
 func _on_Player_area_entered(_area):
