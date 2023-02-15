@@ -1,0 +1,6 @@
+[submodule "Scripts"]
+	path = Scripts
+	url = git@github.com:PlaneRun-Developers/PlaneRunGDScripts
+[submodule "Assets/material_theme"]
+	path = Assets/material_theme
+	url = https://github.com/spaghiajoeojo/godot-material-theme

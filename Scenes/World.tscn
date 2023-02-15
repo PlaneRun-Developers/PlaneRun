@@ -1,0 +1,109 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scenes/Background.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/World.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Explosion.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/explosionCrunch_000.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Assets/CustomFont.tres" type="DynamicFont" id=7]
+[ext_resource path="res://Scripts/CanvasLayer.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/ScoreLabel.gd" type="Script" id=9]
+
+[node name="World" type="Node"]
+script = ExtResource( 3 )
+EnemyScene = ExtResource( 4 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 512, 520 )
+scale = Vector2( 2, 2 )
+z_index = 4
+
+[node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Particles2D" parent="." instance=ExtResource( 5 )]
+scale = Vector2( 0.5, 0.5 )
+z_index = 3
+
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+volume_db = -10.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+pause_mode = 2
+script = ExtResource( 8 )
+
+[node name="StartTimer" type="Timer" parent="CanvasLayer"]
+wait_time = 5.0
+
+[node name="StartTimer4s" type="Timer" parent="CanvasLayer/StartTimer"]
+wait_time = 4.0
+
+[node name="StartTimer1s" type="Timer" parent="CanvasLayer/StartTimer"]
+
+[node name="StartTimer3s" type="Timer" parent="CanvasLayer/StartTimer"]
+wait_time = 3.0
+
+[node name="StartTimer2s" type="Timer" parent="CanvasLayer/StartTimer"]
+wait_time = 2.0
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+anchor_right = 1.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 7 )
+text = "0"
+align = 1
+valign = 1
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpawnLabel" type="Label" parent="CanvasLayer"]
+margin_top = 184.0
+margin_right = 1024.0
+margin_bottom = 240.0
+custom_colors/font_color = Color( 1, 0.203922, 0.203922, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "Spawning in
+5 Seconds!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="CanvasLayer" parent="CanvasLayer"]
+
+[node name="ResumeButton" type="Button" parent="CanvasLayer/Menu"]
+margin_left = 456.0
+margin_top = 264.0
+margin_right = 568.0
+margin_bottom = 296.0
+custom_fonts/font = ExtResource( 7 )
+text = "Resume"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0, 1 )
+motion_mirroring = Vector2( 0, 576 )
+
+[node name="Sprite" parent="ParallaxBackground/ParallaxLayer" instance=ExtResource( 1 )]
+position = Vector2( 0, -576 )
+scale = Vector2( 1.8, 1.8 )
+region_rect = Rect2( 0, 0, 569.502, 321.382 )
+
+[connection signal="died" from="Player" to="." method="_on_Player_died"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
+[connection signal="finished" from="ExplosionSound" to="." method="_on_ExplosionSound_finished"]
+[connection signal="timeout" from="CanvasLayer/StartTimer" to="CanvasLayer" method="_on_StartTimer_timeout"]
+[connection signal="timeout" from="CanvasLayer/StartTimer/StartTimer4s" to="CanvasLayer" method="_on_StartTimer4s_timeout"]
+[connection signal="timeout" from="CanvasLayer/StartTimer/StartTimer1s" to="CanvasLayer" method="_on_StartTimer1s_timeout"]
+[connection signal="timeout" from="CanvasLayer/StartTimer/StartTimer3s" to="CanvasLayer" method="_on_StartTimer3s_timeout"]
+[connection signal="timeout" from="CanvasLayer/StartTimer/StartTimer2s" to="CanvasLayer" method="_on_StartTimer2s_timeout"]
+[connection signal="pressed" from="CanvasLayer/Menu/ResumeButton" to="CanvasLayer" method="_on_ResumeButton_pressed"]
